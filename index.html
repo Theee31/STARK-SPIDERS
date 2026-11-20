@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gaon Saathi – गाँव साथी</title>
+<style>
+:root{--bg:#fffaf0;--card:#fff;--ink:#1d1a14;--mut:#5b5446;--pri:#b45309;--pri-ink:#fff;--grn:#166534;--grnbg:#dcfce7;--red:#b91c1c;--redbg:#fee2e2;--amb:#854d0e;--ambbg:#fef3c7;--blu:#1e40af;--blubg:#dbeafe;--bd:#e7dcc3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17130c;--card:#241e13;--ink:#fdf6e6;--mut:#c9bd9f;--pri:#f59e0b;--pri-ink:#1d1a14;--grn:#86efac;--grnbg:#14391f;--red:#fca5a5;--redbg:#4a1818;--amb:#fde68a;--ambbg:#45330c;--blu:#93c5fd;--blubg:#16294f;--bd:#4a3f2a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17130c;--card:#241e13;--ink:#fdf6e6;--mut:#c9bd9f;--pri:#f59e0b;--pri-ink:#1d1a14;--grn:#86efac;--grnbg:#14391f;--red:#fca5a5;--redbg:#4a1818;--amb:#fde68a;--ambbg:#45330c;--blu:#93c5fd;--blubg:#16294f;--bd:#4a3f2a;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Noto Sans Devanagari","Segoe UI",Roboto,sans-serif}
+body.saral{font-size:21px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;min-height:48px;border-radius:12px;border:2px solid var(--bd);background:var(--card);padding:8px 14px;font-weight:600}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--blu);outline-offset:2px}
+.pri{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}
+a{color:var(--blu)}
+.util{background:#2b1d06;color:#fff;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px 12px;position:sticky;top:0;z-index:5}
+.util select{min-height:44px;border-radius:10px;padding:0 8px;background:#fff;color:#1d1a14;border:0}
+.util button{min-height:44px;background:#3d2c0d;color:#fff;border-color:#6b4f17}
+.util .sos{background:#b91c1c;border-color:#fecaca;margin-left:auto}
+.util .logo{font-weight:800;font-size:1.1rem}
+nav.main{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;background:var(--card);border-bottom:2px solid var(--bd)}
+nav.main a{white-space:nowrap;text-decoration:none;color:var(--ink);padding:10px 14px;border-radius:12px;font-weight:700;min-height:44px;display:flex;gap:6px;align-items:center}
+nav.main a[aria-current=page]{background:var(--pri);color:var(--pri-ink)}
+main{max-width:980px;margin:0 auto;padding:14px 12px 60px}
+.crumbs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;color:var(--mut);font-size:.9rem;margin-bottom:10px}
+.crumbs a{color:var(--mut)}
+h1{font-size:1.6rem;margin:.3em 0}h2{font-size:1.25rem;margin:1em 0 .4em}h3{margin:.2em 0}
+.card{background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:14px;margin:10px 0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.grid.w{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:130px;text-align:center;text-decoration:none;color:var(--ink);background:var(--card);border:3px solid var(--bd);border-radius:18px;padding:12px;font-weight:800;font-size:1.1rem}
+.tile .ic{font-size:2.6rem}.tile small{font-weight:500;color:var(--mut)}
+.badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:.78rem;font-weight:800;border:1.5px solid currentColor}
+.b-v{color:var(--grn);background:var(--grnbg)}.b-n{color:var(--amb);background:var(--ambbg)}.b-d{color:var(--blu);background:var(--blubg)}
+.alert{background:var(--redbg);color:var(--red);border:2px solid var(--red);border-radius:14px;padding:10px 14px;font-weight:700}
+.good{color:var(--grn);font-weight:800}.warn{color:var(--red);font-weight:800}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.step{background:var(--card);border:2px solid var(--bd);border-radius:14px;padding:10px;text-align:center;font-weight:700;font-size:.95rem}
+.step b{display:block;font-size:1.6rem}
+.search{display:flex;gap:8px;flex-wrap:wrap}.search input{flex:1;min-width:180px;min-height:54px;border-radius:14px;border:3px solid var(--pri);padding:0 14px;background:var(--card)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.chip[aria-pressed=true]{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;min-height:56px;font-size:1.05rem}
+ul.chk{list-style:none;padding:0}ul.chk li::before{content:"✅ "}
+table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid var(--bd);text-align:left}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sp{justify-content:space-between}
+.guide{background:var(--ambbg);color:var(--amb);border:2px dashed var(--amb);border-radius:14px;padding:10px 14px;margin:10px 0;font-weight:600}
+.call{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:var(--red);border-radius:16px;padding:14px;min-height:72px;font-weight:800;font-size:1.2rem}
+.call small{display:block;font-weight:500;opacity:.9}
+body.saral .hide-s{display:none}
+input.f{min-height:48px;border:2px solid var(--bd);border-radius:10px;padding:0 10px;background:var(--card);width:100%;margin:4px 0}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#1d1a14;color:#fff;padding:10px 18px;border-radius:99px;display:none;z-index:9}
+.hero{border-radius:16px;overflow:hidden;border:2px solid var(--bd);margin:4px 0 10px}.hero svg{display:block;width:100%;height:auto}
+.art{width:72px;height:72px;flex:none}.step .art{display:block;width:64px;height:64px;margin:0 auto 4px}
+body.saral .art{width:84px;height:84px}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="util" role="banner">
+ <span class="logo">🌾 Gaon Saathi</span>
+ <label class="sr" style="position:absolute;left:-9999px" for="lang">Language</label>
+ <select id="lang" aria-label="Language"></select>
+ <button id="saralBtn" aria-pressed="false"></button>
+ <button id="themeBtn" aria-label="Toggle dark mode">🌓</button>
+ <a class="call sos" href="tel:112" style="min-height:44px;padding:6px 14px;font-size:1rem;margin-left:auto">🚨 112</a>
+</header>
+<nav class="main" id="nav" aria-label="Main"></nav>
+<main id="app" tabindex="-1"></main>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============ DATA (swap this block for real scheme data / an API) ============ */
+const LANGS=[["hi","हिन्दी"],["en","English"],["bho","भोजपुरी (soon)"],["mai","मैथिली (soon)"],["bn","বাংলা (soon)"],["ta","தமிழ் (soon)"],["te","తెలుగు (soon)"],["mr","मराठी (soon)"]];
+const UI={
+ en:{home:"Home",schemes:"Schemes",docs:"Documents",services:"Services",emergency:"Emergency",saved:"My List",saral:"Saral Mode",saralOn:"Saral Mode: ON",ask:"Ask or speak…",go:"Search",speak:"Speak",listen:"🔊 Read aloud",discover:"Discover",understand:"Understand",act:"Act",d1:"Find help for your need",d2:"See who is eligible and what papers you need",d3:"Take clear next steps",tCrops:"Crops",tWeather:"Weather",tBus:"Bus / Transport",tYojana:"Yojana (Schemes)",finder:"Which scheme is for me?",finderSub:"Answer 3 easy questions",journeys:"Guided journeys",back:"← Back",save:"☆ Save",unsave:"★ Saved",elig:"Who can apply",ben:"What you get",need:"Papers needed",next:"Next steps",open:"Open",agri:"Agriculture Hub",jobs:"Jobs & Education",nearby:"Nearby Services",weather:"Today’s weather",loc:"Your place",setLoc:"Save place",all:"All",noRes:"No schemes found. Try a different word.",alert:"Alert: Heavy rain likely in 2 days. Delay spraying; harvest ripe crops early.",assist:"Step-by-step help is ON. Tap the big orange button to go on.",trust:"Trust labels",nomic:"Voice search is not supported in this browser. Please type.",pending:"This language is coming soon. Showing Hindi labels.",report:"Report a problem to Panchayat",reported:"Demo: your report would go to the Panchayat."},
+ hi:{home:"घर",schemes:"योजना",docs:"कागज़ात",services:"सेवाएँ",emergency:"आपातकाल",saved:"मेरी सूची",saral:"सरल मोड",saralOn:"सरल मोड: चालू",ask:"पूछिए या बोलिए…",go:"खोजें",speak:"बोलिए",listen:"🔊 सुनिए",discover:"खोजें",understand:"समझें",act:"करें",d1:"अपनी ज़रूरत की मदद खोजें",d2:"देखें कौन पात्र है और कौन से कागज़ चाहिए",d3:"आगे के आसान क़दम उठाएँ",tCrops:"फ़सल",tWeather:"मौसम",tBus:"बस / गाड़ी",tYojana:"योजना",finder:"मेरे लिए कौन सी योजना?",finderSub:"3 आसान सवालों के जवाब दें",journeys:"चरण-दर-चरण रास्ते",back:"← पीछे",save:"☆ सहेजें",unsave:"★ सहेजा",elig:"कौन आवेदन कर सकता है",ben:"क्या मिलेगा",need:"कौन से कागज़ चाहिए",next:"आगे क्या करें",open:"खोलें",agri:"खेती केंद्र",jobs:"काम और पढ़ाई",nearby:"पास की सेवाएँ",weather:"आज का मौसम",loc:"आपकी जगह",setLoc:"जगह सहेजें",all:"सभी",noRes:"कोई योजना नहीं मिली। दूसरा शब्द आज़माएँ।",alert:"चेतावनी: 2 दिन में तेज़ बारिश की संभावना। छिड़काव रोकें, पकी फ़सल जल्दी काट लें।",assist:"क़दम-दर-क़दम मदद चालू है। आगे बढ़ने के लिए बड़ा नारंगी बटन दबाएँ।",trust:"भरोसे के निशान",nomic:"इस ब्राउज़र में बोलकर खोज नहीं चलती। कृपया लिखिए।",pending:"यह भाषा जल्द आएगी। अभी हिन्दी दिख रही है।",report:"पंचायत को समस्या बताएँ",reported:"डेमो: आपकी शिकायत पंचायत को जाएगी।"}};
+const CATS=[["agri","🌾","Agriculture","खेती"],["edu","🎓","Education","पढ़ाई"],["jobs","🛠️","Jobs & Skills","काम"],["health","🏥","Health","सेहत"],["house","🏠","Housing & Finance","घर/पैसा"]];
+const GROUPS=[["farmer","🧑‍🌾","Farmer","किसान"],["student","🎒","Student","छात्र"],["woman","👩","Woman","महिला"],["senior","👴","Senior Citizen","बुज़ुर्ग"],["worker","👷","Worker","मज़दूर"]];
+const DOCS={
+ aadhaar:{n:["Aadhaar card","आधार कार्ड"],ic:"🪪",why:"Proves who you are. Most schemes link benefits to it.",how:"Keep the original and a phone number linked to it. Download e-Aadhaar from the UIDAI site or DigiLocker.",where:"Aadhaar centre / CSC / DigiLocker"},
+ bank:{n:["Bank passbook","बैंक पासबुक"],ic:"🏦",why:"Money is sent straight to your account (DBT).",how:"Account must be active and linked with Aadhaar. Copy the first page showing name, account no. and IFSC.",where:"Your bank branch / CSC"},
+ land:{n:["Land record (Khatauni / Khasra)","ज़मीन के कागज़"],ic:"🗺️",why:"Shows you own or farm the land.",how:"Get a fresh copy online from the state land records portal or from the block office.",where:"Block office / Lok Seva Kendra / CSC"},
+ income:{n:["Income certificate","आय प्रमाण पत्र"],ic:"💰",why:"Proves family income is within the scheme limit.",how:"Apply with Aadhaar and address proof; the revenue officer verifies. Keep it recent (usually within 1 year).",where:"Tehsil / RTPS counter / CSC"},
+ caste:{n:["Caste certificate","जाति प्रमाण पत्र"],ic:"📄",why:"Needed for reserved-category benefits and scholarships.",how:"Apply with father’s certificate or school record and address proof.",where:"Tehsil / CSC"},
+ address:{n:["Address / residence proof","निवास प्रमाण"],ic:"🏡",why:"Shows you live in the area covered by the scheme.",how:"Ration card, voter ID, or a certificate from the Gram Panchayat works.",where:"Panchayat office / CSC"},
+ ration:{n:["Ration card","राशन कार्ड"],ic:"🍚",why:"Shows household members and family category.",how:"Check the names of all family members are correct.",where:"Block supply office / CSC"},
+ photo:{n:["Passport photo","फ़ोटो"],ic:"📷",why:"Needed on application forms.",how:"Recent, clear, plain background. Carry 2–3 copies.",where:"Any photo studio"},
+ marks:{n:["Marksheet / school certificate","मार्कशीट"],ic:"📘",why:"Proves your class, marks and age.",how:"Keep the latest marksheet and school ID or bonafide certificate.",where:"School / DigiLocker"}};
+const S=[
+ {id:"pm-kisan",cat:"agri",g:["farmer"],bd:"v",n:["PM-KISAN Samman Nidhi","पीएम-किसान सम्मान निधि"],b:["Yearly cash support for farmer families, paid in instalments to the bank account.","किसान परिवार को साल में नकद मदद, सीधे बैंक खाते में।"],el:["Own cultivable land","Land record in your name","Bank account linked with Aadhaar"],dc:["aadhaar","bank","land"],nx:["Register on the PM-KISAN portal or at a CSC","Complete e-KYC (OTP or biometric)","Helpline: 155261 / 011-24300606"]},
+ {id:"pmfby",cat:"agri",g:["farmer"],bd:"v",n:["PM Fasal Bima Yojana","पीएम फसल बीमा योजना"],b:["Crop insurance if rain, flood or pests damage your crop.","बारिश, बाढ़ या कीड़ों से फ़सल ख़राब होने पर बीमा।"],el:["Farmer growing a notified crop","Enrol before the last date of the season","Bank account"],dc:["aadhaar","bank","land"],nx:["Apply through your bank, CSC or the crop insurance portal","Pay the small farmer share of premium","Helpline: 14447"]},
+ {id:"kcc",cat:"agri",g:["farmer"],bd:"n",n:["Kisan Credit Card","किसान क्रेडिट कार्ड"],b:["Low-interest farm loan for seed, fertiliser and other needs.","बीज, खाद आदि के लिए कम ब्याज पर कर्ज़।"],el:["Farmer, tenant farmer or sharecropper","Good repayment record"],dc:["aadhaar","bank","land","photo"],nx:["Visit your bank branch with the papers","Ask for the current interest rate and limit","Confirm details on the official site"]},
+ {id:"pmay-g",cat:"house",g:["worker","woman","farmer"],bd:"n",n:["PM Awas Yojana – Gramin","पीएम आवास योजना – ग्रामीण"],b:["Help to build a pucca house with a toilet.","पक्का घर बनाने में सहायता।"],el:["No pucca house at present","Name in the SECC / Awaas+ list","Low-income rural household"],dc:["aadhaar","bank","ration","address"],nx:["Check your name with the Gram Panchayat","Meet the Rozgar Sevak / Block office","Confirm eligibility on the official site"]},
+ {id:"pmjay",cat:"health",g:["farmer","woman","senior","worker","student"],bd:"v",n:["Ayushman Bharat (PM-JAY)","आयुष्मान भारत"],b:["Free hospital treatment up to a yearly limit at listed hospitals.","सूचीबद्ध अस्पतालों में मुफ़्त इलाज।"],el:["Family listed in SECC / state list","Senior citizens 70+ may also qualify"],dc:["aadhaar","ration"],nx:["Check eligibility on the PM-JAY site or ask an Ayushman Mitra","Get your Ayushman card at a CSC or hospital","Helpline: 14555"]},
+ {id:"nsp",cat:"edu",g:["student"],bd:"n",n:["Scholarships (National Scholarship Portal)","छात्रवृत्ति (NSP)"],b:["Money support for school or college fees and books.","फ़ीस और किताबों के लिए छात्रवृत्ति।"],el:["Studying in a recognised school or college","Family income under the scheme limit","Good attendance and marks"],dc:["aadhaar","bank","income","caste","marks","photo"],nx:["Register on scholarships.gov.in (or state portal)","Upload papers and submit before the last date","Get the form checked at the school / CSC"]},
+ {id:"pmkvy",cat:"jobs",g:["student","worker","woman"],bd:"n",n:["PM Kaushal Vikas (Skill Training)","पीएम कौशल विकास"],b:["Free short skill courses with a certificate.","मुफ़्त कौशल प्रशिक्षण और प्रमाण पत्र।"],el:["Age about 15–45","Interested in a trade course"],dc:["aadhaar","bank","photo","marks"],nx:["Find a training centre on Skill India portal","Visit the centre with your papers","Ask about placement help"]},
+ {id:"mgnrega",cat:"jobs",g:["worker","farmer","woman"],bd:"v",n:["MGNREGA Job Card","मनरेगा जॉब कार्ड"],b:["Guaranteed paid village work for adults who ask for it.","काम माँगने वाले वयस्क को गाँव में रोज़गार।"],el:["Adult member of a rural household","Willing to do unskilled manual work"],dc:["aadhaar","bank","photo","address"],nx:["Apply for a job card at the Gram Panchayat","Submit a written request for work","Helpline: 1800-111-555"]},
+ {id:"sukanya",cat:"house",g:["woman"],bd:"n",n:["Sukanya Samriddhi Account","सुकन्या समृद्धि खाता"],b:["Savings account for a girl child with good interest.","बेटी के लिए बचत खाता, अच्छा ब्याज।"],el:["Girl child under 10 years","Opened by parent or guardian"],dc:["aadhaar","address","photo"],nx:["Visit a post office or bank","Fill the form with birth certificate","Confirm current interest rate officially"]},
+ {id:"nsap",cat:"house",g:["senior"],bd:"n",n:["Old Age Pension (NSAP)","वृद्धावस्था पेंशन"],b:["Monthly pension for poor senior citizens.","ग़रीब बुज़ुर्गों को हर महीने पेंशन।"],el:["Age 60+ (varies by state)","Below poverty line household"],dc:["aadhaar","bank","income","address"],nx:["Apply at the Block office or state pension portal","Keep age proof ready","Ask the Panchayat for the form"]},
+ {id:"mudra",cat:"jobs",g:["worker","woman","farmer"],bd:"n",n:["Mudra Loan","मुद्रा ऋण"],b:["Small business loan without collateral.","छोटे कारोबार के लिए बिना गारंटी कर्ज़।"],el:["Running or starting a small business","No default on earlier loans"],dc:["aadhaar","bank","address","photo"],nx:["Visit a bank or CSC","Explain your business plan simply","Confirm limits on the official site"]}];
+const BADGES={v:["Verified","सत्यापित","b-v","✔"],n:["Needs Verification","जाँच ज़रूरी","b-n","⚠"],d:["Demo Data","डेमो डेटा","b-d","ℹ"]};
+const MANDI=[["Wheat","गेहूँ","2,450"],["Paddy","धान","2,200"],["Mustard","सरसों","5,800"],["Masoor","मसूर","6,200"],["Maize","मक्का","2,100"]];
+const CAL=[["Sow now","अभी बोएँ","Wheat, Mustard, Masoor, Peas"],["Harvest now","अभी काटें","Late paddy, Sugarcane (early)"],["Care","देखभाल","Irrigate wheat at 20–25 days"]];
+const SERVICES=[["CSC (Common Service Centre)","🖥️","1.2 km"],["Primary Health Centre","🏥","3 km"],["Bank / Post Office","🏦","2 km"],["Block Office","🏛️","8 km"],["Bus stop (to Bihar Sharif)","🚌","0.5 km · next 4:30 pm"]];
+const EMERG=[["112","All emergencies","सभी आपात"],["108","Ambulance","एम्बुलेंस"],["100","Police","पुलिस"],["101","Fire","आग"],["181","Women helpline","महिला हेल्पलाइन"],["1098","Child helpline","बाल हेल्पलाइन"]];
+const JOURNEYS=[
+ {id:"student",ic:"🎓",n:["Student path","छात्र का रास्ता"],steps:["I want to study further","Find scholarships (Scheme Finder → Student)","Check papers: income, caste, marksheet","Apply on NSP or at the CSC"],to:"scheme-nsp"},
+ {id:"farmer",ic:"🌾",n:["Farmer path","किसान का रास्ता"],steps:["Check weather and crop advice","Find schemes: PM-KISAN, crop insurance","Gather land record, Aadhaar, bank papers","Register at CSC or bank"],to:"scheme-pm-kisan"}];
+/* ============ ILLUSTRATIONS (inline SVG, work offline) ============ */
+const ic=(bg,body,l)=>`<svg class="art" viewBox="0 0 96 96" role="img" aria-label="${l}"><circle cx="48" cy="48" r="46" fill="${bg}"/>${body}</svg>`;
+const ART={
+ hero:`<svg viewBox="0 0 600 170" role="img" aria-label="Village with a farmer's phone showing a green tick"><rect width="600" height="170" fill="#fde68a"/><circle cx="90" cy="55" r="30" fill="#f59e0b"/><path d="M0 120Q150 70 300 115T600 105V170H0Z" fill="#86b36a"/><rect y="138" width="600" height="32" fill="#4d7c0f"/><path d="M0 148H600M0 158H600" stroke="#365314" stroke-width="3"/><rect x="410" y="92" width="70" height="48" fill="#fff7ed"/><polygon points="400,94 445,60 490,94" fill="#b45309"/><rect x="435" y="108" width="20" height="32" fill="#78350f"/><rect x="525" y="100" width="10" height="40" fill="#78350f"/><circle cx="530" cy="88" r="26" fill="#166534"/><rect x="240" y="30" width="64" height="112" rx="12" fill="#1d1a14"/><rect x="247" y="42" width="50" height="88" rx="4" fill="#fff"/><circle cx="272" cy="72" r="16" fill="#166534"/><path d="M264 72l6 6 11-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M255 102h34M255 112h24" stroke="#b45309" stroke-width="4" stroke-linecap="round"/></svg>`,
+ agri:ic("#dcfce7",`<path d="M48 78V38" stroke="#166534" stroke-width="5" stroke-linecap="round"/><ellipse cx="36" cy="50" rx="13" ry="6" fill="#22c55e" transform="rotate(-35 36 50)"/><ellipse cx="60" cy="40" rx="13" ry="6" fill="#22c55e" transform="rotate(35 60 40)"/><rect x="22" y="76" width="52" height="8" rx="4" fill="#78350f"/>`,"Farming"),
+ edu:ic("#dbeafe",`<path d="M20 34L48 42L76 34V68L48 76L20 68Z" fill="#1e40af"/><path d="M48 42V76" stroke="#fff" stroke-width="3"/><path d="M27 46l15 4M27 54l15 4" stroke="#bfdbfe" stroke-width="3"/>`,"Education"),
+ jobs:ic("#fef3c7",`<path d="M24 58Q24 32 48 32Q72 32 72 58Z" fill="#f59e0b"/><rect x="20" y="58" width="56" height="9" rx="4" fill="#b45309"/><rect x="44" y="26" width="8" height="14" fill="#b45309"/>`,"Jobs and skills"),
+ health:ic("#fee2e2",`<rect x="40" y="24" width="16" height="48" rx="3" fill="#b91c1c"/><rect x="24" y="40" width="48" height="16" rx="3" fill="#b91c1c"/>`,"Health"),
+ house:ic("#ffedd5",`<polygon points="18,50 48,22 78,50" fill="#b45309"/><rect x="28" y="50" width="40" height="28" fill="#fff"/><rect x="43" y="58" width="10" height="20" fill="#78350f"/>`,"Housing and money"),
+ rain:ic("#dbeafe",`<ellipse cx="44" cy="42" rx="22" ry="14" fill="#94a3b8"/><circle cx="58" cy="38" r="14" fill="#94a3b8"/><path d="M32 62l-4 12M46 62l-4 12M60 62l-4 12" stroke="#1e40af" stroke-width="4" stroke-linecap="round"/>`,"Rain"),
+ s1:ic("#fef3c7",`<circle cx="42" cy="42" r="18" fill="#fff" stroke="#b45309" stroke-width="6"/><path d="M56 56L76 76" stroke="#b45309" stroke-width="9" stroke-linecap="round"/>`,"Search"),
+ s2:ic("#dbeafe",`<rect x="26" y="18" width="44" height="60" rx="6" fill="#fff" stroke="#1e40af" stroke-width="4"/><path d="M34 34l4 4 7-8M34 50l4 4 7-8M34 66l4 4 7-8M52 34h10M52 50h10M52 66h10" stroke="#166534" stroke-width="3.5" fill="none" stroke-linecap="round"/>`,"Checklist"),
+ s3:ic("#dcfce7",`<circle cx="48" cy="48" r="26" fill="#166534"/><path d="M36 48l9 9 16-18" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`,"Done")};
+/* ================================ APP ================================ */
+const $=s=>document.querySelector(s),app=$("#app");
+let st={lang:"hi",saral:false,saved:[],loc:{v:"Rampur",b:"Hilsa",d:"Nalanda, Bihar"},q:"",cat:"",grp:"",fs:{}};
+const ls={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+Object.assign(st,ls.get("gs")||{});
+const save=()=>ls.set("gs",{lang:st.lang,saral:st.saral,saved:st.saved,loc:st.loc});
+const hi=()=>st.lang!=="en";
+const t=k=>(UI[st.lang]||UI.hi)[k]||UI.en[k]||k;
+const pick=a=>hi()?a[1]:a[0];
+const badge=k=>{const b=BADGES[k];return `<span class="badge ${b[2]}">${b[3]} ${pick(b)}</span>`};
+const toast=m=>{const e=$("#toast");e.textContent=m;e.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",3500)};
+const speak=txt=>{if(!("speechSynthesis" in window))return toast("Read-aloud not supported");speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang=hi()?"hi-IN":"en-IN";speechSynthesis.speak(u)};
+const readBtn=()=>`<button onclick="speak(document.getElementById('app').innerText)">${t("listen")}</button>`;
+const NAV=[["home","🏠","home"],["schemes","📋","schemes"],["docs","🗂️","docs"],["services","🧰","services"],["emergency","🚨","emergency"],["saved","★","saved"]];
+const route=()=>(location.hash.slice(1)||"home");
+function crumbs(r){const m={schemes:"schemes",finder:"finder",docs:"docs",services:"services",agri:"agri",jobs:"jobs",nearby:"nearby",emergency:"emergency",saved:"saved"};let c=[`<a href="#home">${t("home")}</a>`];
+ if(r.startsWith("scheme-")){c.push(`<a href="#schemes">${t("schemes")}</a>`,pick(S.find(x=>"scheme-"+x.id===r).n))}
+ else if(["agri","jobs","nearby"].includes(r)){c.push(`<a href="#services">${t("services")}</a>`,t(m[r]))}
+ else if(r==="journey-student"||r==="journey-farmer")c.push(t("journeys"));
+ else if(r!=="home")c.push(t(m[r]||r));
+ return `<div class="crumbs">${r!=="home"?`<button onclick="history.back()">${t("back")}</button>`:""}${c.join(" › ")}</div>`}
+function head(ic,title){return `<div class="row sp"><h1>${ic} ${title}</h1>${readBtn()}</div>`}
+function render(){
+ document.documentElement.lang=hi()?"hi":"en";document.body.classList.toggle("saral",st.saral);
+ const r=route();
+ $("#nav").innerHTML=NAV.map(n=>`<a href="#${n[0]}" ${(r===n[0]||(n[0]==="services"&&["agri","jobs","nearby"].includes(r))||(n[0]==="schemes"&&(r==="finder"||r.startsWith("scheme-"))))?'aria-current="page"':""}>${n[1]} ${t(n[2])}</a>`).join("");
+ $("#lang").innerHTML=LANGS.map(l=>`<option value="${l[0]}" ${l[0]===st.lang?"selected":""}>${l[1]}</option>`).join("");
+ $("#saralBtn").textContent=st.saral?"✅ "+t("saralOn"):"🟠 "+t("saral");$("#saralBtn").setAttribute("aria-pressed",st.saral);
+ let h=crumbs(r);
+ if(st.saral&&r!=="home")h+=`<div class="guide">👉 ${t("assist")}</div>`;
+ h+=(V[r]||(r.startsWith("scheme-")?V.detail:V.home))(r);
+ app.innerHTML=h;window.scrollTo(0,0);app.focus({preventScroll:true});
+}
+const tile=(href,ic,lbl,sub="")=>`<a class="tile" href="#${href}"><span class="ic" aria-hidden="true">${ic}</span>${lbl}${sub?`<small>${sub}</small>`:""}</a>`;
+function schemeCard(s){return `<div class="card"><div class="row sp"><div class="row" style="flex-wrap:nowrap;flex:1">${ART[s.cat]}<h3>${pick(s.n)}</h3></div>${badge(s.bd)}</div><p>${pick(s.b)}</p><div class="row"><a class="pri" style="text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:700;color:var(--pri-ink);background:var(--pri)" href="#scheme-${s.id}">${t("open")} →</a><button onclick="tog('${s.id}')">${st.saved.includes(s.id)?t("unsave"):t("save")}</button></div></div>`}
+window.tog=id=>{st.saved=st.saved.includes(id)?st.saved.filter(x=>x!==id):[...st.saved,id];save();render()};
+const V={
+home(){
+ let h=`<div class="hero">${ART.hero}</div><div class="search"><input id="q" type="search" placeholder="${t("ask")}" aria-label="${t("ask")}"><button class="pri" onclick="go()">🔍 ${t("go")}</button><button id="mic" onclick="mic()">🎤 ${t("speak")}</button></div>
+ <div class="row sp" style="margin:10px 0"><span>📍 <b>${st.loc.v}</b>, ${st.loc.b}, ${st.loc.d}</span>${badge("d")}</div>
+ <div class="steps"><div class="step">${ART.s1}<b>1 🔎</b>${t("discover")}<br><small>${t("d1")}</small></div><div class="step">${ART.s2}<b>2 📖</b>${t("understand")}<br><small>${t("d2")}</small></div><div class="step">${ART.s3}<b>3 ✅</b>${t("act")}<br><small>${t("d3")}</small></div></div>
+ <div class="alert" style="margin:12px 0">⚠️ ${t("alert")} ${badge("d")}</div>
+ <div class="card"><div class="row sp"><h3>☁️ ${t("weather")}</h3>${badge("d")}</div><p style="font-size:1.4rem;margin:.2em 0">🌦️ 27°C · ☔ 70% ${hi()?"बारिश":"rain"}</p><p class="warn">${hi()?"2 दिन बाद तेज़ बारिश: छिड़काव रोकें।":"Heavy rain in 2 days: hold spraying."}</p></div>
+ <div class="grid">${tile("agri","🌾",t("tCrops"))}${tile("agri","⛅",t("tWeather"))}${tile("nearby","🚌",t("tBus"))}${tile("schemes","📋",t("tYojana"))}</div>
+ <a class="call" style="background:var(--pri);color:var(--pri-ink);margin:14px 0" href="#finder">🧭 <span>${t("finder")}<small>${t("finderSub")}</small></span></a>`;
+ if(st.saral)h+=`<div class="guide">👉 ${t("assist")}</div>`;
+ h+=`<div class="grid hide-s">${tile("docs","🗂️",t("docs"))}${tile("jobs","🎓",t("jobs"))}${tile("emergency","🚨",t("emergency"))}${tile("saved","★",t("saved"),st.saved.length+"")}</div>
+ <h2 class="hide-s">${t("journeys")}</h2><div class="grid w hide-s">${JOURNEYS.map(j=>`<a class="tile" style="align-items:flex-start;text-align:left" href="#journey-${j.id}"><span class="ic">${j.ic}</span>${pick(j.n)}<small>${j.steps[0]} → … → ${j.steps[3]}</small></a>`).join("")}</div>
+ <div class="card hide-s"><h3>📍 ${t("loc")}</h3><div class="row"><input class="f" id="lv" placeholder="Village" value="${st.loc.v}" style="flex:1"><input class="f" id="lb" placeholder="Block" value="${st.loc.b}" style="flex:1"><input class="f" id="ld" placeholder="District, State" value="${st.loc.d}" style="flex:1"></div><button onclick="setLoc()">${t("setLoc")}</button></div>
+ <div class="card hide-s"><h3>${t("trust")}</h3><div class="row">${badge("v")} ${badge("n")} ${badge("d")}</div><p style="color:var(--mut);font-size:.9rem">${hi()?"सत्यापित = सरकारी स्रोत से जाँचा। जाँच ज़रूरी = आवेदन से पहले आधिकारिक साइट देखें। डेमो = नमूना आँकड़े।":"Verified = checked against an official source. Needs Verification = confirm on the official site before applying. Demo = sample figures only."}</p></div>`;
+ return h},
+schemes(){
+ const q=st.q.toLowerCase();
+ const list=S.filter(s=>(!st.cat||s.cat===st.cat)&&(!st.grp||s.g.includes(st.grp))&&(!q||(s.n.join(" ")+s.b.join(" ")).toLowerCase().includes(q)));
+ return head("📋",t("schemes"))+`<div class="search"><input id="q" type="search" value="${st.q}" placeholder="${t("ask")}" aria-label="${t("ask")}" oninput="st.q=this.value;filt()"><button id="mic" onclick="mic()">🎤 ${t("speak")}</button></div>
+ <div class="chips" role="group" aria-label="Category"><button class="chip" aria-pressed="${!st.cat}" onclick="st.cat='';render()">${t("all")}</button>${CATS.map(c=>`<button class="chip" aria-pressed="${st.cat===c[0]}" onclick="st.cat='${c[0]}';render()">${c[1]} ${pick(c.slice(2))}</button>`).join("")}</div>
+ <div class="chips" role="group" aria-label="Group"><button class="chip" aria-pressed="${!st.grp}" onclick="st.grp='';render()">${t("all")}</button>${GROUPS.map(c=>`<button class="chip" aria-pressed="${st.grp===c[0]}" onclick="st.grp='${c[0]}';render()">${c[1]} ${pick(c.slice(2))}</button>`).join("")}</div>
+ <p><small>${hi()?"राज्य: बिहार (डेमो) – अन्य राज्य जल्द":"State: Bihar (demo) – more states soon"}</small></p>
+ <div class="grid w" id="list">${list.map(schemeCard).join("")||`<p>${t("noRes")}</p>`}</div>
+ <a class="call" style="background:var(--pri);color:var(--pri-ink)" href="#finder">🧭 ${t("finder")}</a>`},
+detail(r){const s=S.find(x=>"scheme-"+x.id===r);
+ return head("📌",pick(s.n))+`<div class="row">${ART[s.cat]}${badge(s.bd)}<button onclick="tog('${s.id}')">${st.saved.includes(s.id)?t("unsave"):t("save")}</button></div>
+ <div class="card"><h2>🎁 ${t("ben")}</h2><p>${pick(s.b)}</p></div>
+ <div class="card"><h2>🙋 ${t("elig")}</h2><ul class="chk">${s.el.map(e=>`<li>${e}</li>`).join("")}</ul></div>
+ <div class="card"><h2>🗂️ ${t("need")}</h2><div class="grid">${s.dc.map(d=>`<a class="tile" style="min-height:90px;font-size:.95rem" href="#docs" onclick="st.doc='${d}'"><span class="ic" style="font-size:1.8rem">${DOCS[d].ic}</span>${pick(DOCS[d].n)}</a>`).join("")}</div></div>
+ <div class="card"><h2>👉 ${t("next")}</h2><ol>${s.nx.map(n=>`<li>${n}</li>`).join("")}</ol><div class="row"><a class="call" style="flex:1;background:var(--grn);color:var(--pri-ink)" href="#nearby">📍 CSC</a><a class="call" style="flex:1" href="tel:155261">📞 155261</a></div><p><small>${s.bd!=="v"?"⚠ "+(hi()?"आवेदन से पहले आधिकारिक साइट पर जाँचें।":"Confirm details on the official website before applying."):""}</small></p></div>`},
+finder(){const f=st.fs,step=!f.g?0:!f.n?1:!f.a?2:3;
+ const Q=[[hi()?"आप कौन हैं?":"Who are you?",GROUPS.map(g=>[g[0],g[1]+" "+pick(g.slice(2))]),"g"],[hi()?"आपको क्या चाहिए?":"What do you need?",CATS.map(c=>[c[0],c[1]+" "+pick(c.slice(2))]),"n"],[hi()?"आपकी उम्र?":"Your age?",[["u18","Under 18"],["18-59","18–59"],["60","60+"]],"a"]];
+ if(step<3){const q=Q[step];return head("🧭",t("finder"))+`<div class="guide">${hi()?"सवाल":"Question"} ${step+1}/3</div><div class="card"><h2>${q[0]}</h2>${q[1].map(o=>`<button class="opt" onclick="st.fs['${q[2]}']='${o[0]}';render()">${o[1]}</button>`).join("")}</div>${step?`<button onclick="st.fs={};render()">↺ ${hi()?"फिर से":"Restart"}</button>`:""}`}
+ const sc=S.map(s=>[s,(s.g.includes(f.g)?2:0)+(s.cat===f.n?2:0)+(f.a==="60"&&s.g.includes("senior")?1:0)-(f.a==="u18"&&!s.g.includes("student")?1:0)]).filter(x=>x[1]>=2).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
+ return head("🧭",hi()?"आपके लिए योजनाएँ":"Schemes for you")+`<div>${sc.map(schemeCard).join("")||`<p>${t("noRes")}</p>`}</div><button onclick="st.fs={};render()">↺ ${hi()?"फिर से":"Restart"}</button>`},
+docs(){const o=st.doc;return head("🗂️",t("docs"))+`<p>${hi()?"हर कागज़ क्यों चाहिए और कैसे तैयार करें।":"Why each paper is needed and how to prepare it."} DigiLocker + CSC.</p>`+Object.entries(DOCS).map(([k,d])=>`<details class="card" ${o===k?"open":""}><summary style="font-weight:800;font-size:1.1rem;min-height:44px">${d.ic} ${pick(d.n)}</summary><p><b>${hi()?"क्यों?":"Why?"}</b> ${d.why}</p><p><b>${hi()?"कैसे तैयार करें?":"How to prepare?"}</b> ${d.how}</p><p><b>📍</b> ${d.where}</p><p>${badge("n")}</p></details>`).join("")},
+services(){return head("🧰",t("services"))+`<div class="grid">${tile("agri","🌾",t("agri"))}${tile("jobs","🎓",t("jobs"))}${tile("nearby","📍",t("nearby"))}${tile("emergency","🚨",t("emergency"))}</div>`},
+agri(){return head("🌾",t("agri"))+`<div class="card"><div class="row sp"><h3>☁️ ${hi()?"मौसम + सलाह":"Weather + advice"}</h3>${badge("d")}</div><div class="row" style="flex-wrap:nowrap">${ART.rain}<p>🌧️ ${hi()?"2 दिन में तेज़ बारिश":"Heavy rain in 2 days"}</p></div><p class="warn">${hi()?"छिड़काव टालें। पकी फ़सल जल्दी काटें।":"Delay spraying. Harvest ripe crops early."}</p><p class="good">${hi()?"बारिश के बाद गेहूँ की बुवाई अच्छी रहेगी।":"Good time to sow wheat after the rain."}</p></div>
+ <div class="card"><div class="row sp"><h3>📅 ${hi()?"इस महीने फ़सल कैलेंडर":"Crop calendar (this month)"}</h3>${badge("d")}</div>${CAL.map(c=>`<p><b>${pick(c)}:</b> ${c[2]}</p>`).join("")}</div>
+ <div class="card"><div class="row sp"><h3>🏪 ${hi()?"मंडी भाव (₹/क्विंटल)":"Mandi prices (₹/quintal)"}</h3>${badge("d")}</div><table><tr><th>${hi()?"फ़सल":"Crop"}</th><th>₹</th></tr>${MANDI.map(m=>`<tr><td>${pick(m)}</td><td>${m[2]}</td></tr>`).join("")}</table><small>${hi()?"असली भाव data.gov.in / Agmarknet से जुड़ेंगे।":"Live prices to connect via data.gov.in / Agmarknet."}</small></div>
+ <div class="card"><h3>🔔 ${hi()?"अलर्ट लें (SMS/WhatsApp)":"Get alerts (SMS/WhatsApp)"}</h3><label class="row"><input type="checkbox"> ${hi()?"मौसम चेतावनी":"Weather warnings"}</label><label class="row"><input type="checkbox"> ${hi()?"योजना की आख़िरी तारीख़":"Scheme deadlines"}</label><label class="row"><input type="checkbox"> ${hi()?"बस समय बदलाव":"Bus timing changes"}</label><button onclick="toast('Demo: alerts need an SMS gateway')">${hi()?"चालू करें":"Subscribe"}</button></div>
+ <a class="call" style="background:var(--pri);color:var(--pri-ink)" href="#journey-farmer">🌾 ${pick(JOURNEYS[1].n)}</a>`},
+jobs(){return head("🎓",t("jobs"))+`<div class="grid w">${S.filter(s=>["edu","jobs"].includes(s.cat)).map(schemeCard).join("")}</div><a class="call" style="background:var(--pri);color:var(--pri-ink)" href="#journey-student">🎓 ${pick(JOURNEYS[0].n)}</a>`},
+nearby(){return head("📍",t("nearby"))+`<div class="row">${badge("d")}</div><div class="grid w">${SERVICES.map(s=>`<div class="card"><h3>${s[1]} ${s[0]}</h3><p>📏 ${s[2]}</p><a href="https://www.google.com/maps/search/${encodeURIComponent(s[0]+" near me")}" target="_blank" rel="noopener">🗺️ Map</a></div>`).join("")}</div><button onclick="toast(t('reported'))">📣 ${t("report")}</button>`},
+emergency(){return head("🚨",t("emergency"))+`<div class="grid w">${EMERG.map(e=>`<a class="call" href="tel:${e[0]}"><span style="font-size:2rem">📞 ${e[0]}</span><span>${hi()?e[2]:e[1]}<small>${hi()?"दबाकर कॉल करें":"Tap to call"}</small></span></a>`).join("")}</div><p>${badge("v")}</p>`},
+saved(){const l=S.filter(s=>st.saved.includes(s.id));return head("★",t("saved"))+(l.length?l.map(schemeCard).join(""):`<p>${hi()?"अभी कुछ सहेजा नहीं।":"Nothing saved yet."}</p><a class="call" style="background:var(--pri);color:var(--pri-ink)" href="#schemes">📋 ${t("schemes")}</a>`)},
+journey(r){const j=JOURNEYS.find(x=>"journey-"+x.id===r);return head(j.ic,pick(j.n))+j.steps.map((s,i)=>`<div class="card"><h3>${["🔎 "+t("discover"),"📖 "+t("understand"),"📖 "+t("understand"),"✅ "+t("act")][i]}</h3><div class="row" style="flex-wrap:nowrap">${ART[["s1","s2","s2","s3"][i]]}<p style="font-size:1.1rem;margin:0"><b>${i+1}.</b> ${s}</p></div></div>`).join("")+`<a class="call" style="background:var(--pri);color:var(--pri-ink)" href="#${j.to}">${t("next")} →</a>`}};
+V["journey-student"]=V["journey-farmer"]=r=>V.journey(r);
+window.filt=()=>{const q=st.q.toLowerCase(),l=S.filter(s=>(!st.cat||s.cat===st.cat)&&(!st.grp||s.g.includes(st.grp))&&(!q||(s.n.join(" ")+s.b.join(" ")).toLowerCase().includes(q)));$("#list").innerHTML=l.map(schemeCard).join("")||`<p>${t("noRes")}</p>`};
+window.go=()=>{st.q=$("#q").value;location.hash="schemes"};
+window.setLoc=()=>{st.loc={v:$("#lv").value,b:$("#lb").value,d:$("#ld").value};save();render();toast("✔")};
+window.mic=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast(t("nomic"));$("#q").focus();return}
+ const r=new SR();r.lang=hi()?"hi-IN":"en-IN";r.onresult=e=>{st.q=e.results[0][0].transcript;if(route()==="schemes"){render()}else{$("#q").value=st.q;go()}};r.onerror=()=>toast(t("nomic"));$("#mic").textContent="🎙️ …";r.start()};
+$("#lang").onchange=e=>{st.lang=e.target.value;if(["bho","mai","bn","ta","te","mr"].includes(st.lang))toast(UI.hi.pending);save();render()};
+$("#saralBtn").onclick=()=>{st.saral=!st.saral;save();render()};
+$("#themeBtn").onclick=()=>{const d=document.documentElement,dark=getComputedStyle(d).colorScheme==="dark";d.dataset.theme=dark?"light":"dark"};
+addEventListener("hashchange",render);render();
+</script></body></html>
